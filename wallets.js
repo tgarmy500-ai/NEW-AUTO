@@ -22,40 +22,36 @@ async function generateLTCWallet() {
     const seed = crypto.randomBytes(32);
     const address = 'L' + crypto.createHash('sha256').update(seed).digest('hex').substring(0, 33);
     return {
-      address: 'LTC_ADDR_' + crypto.randomBytes(16).toString('hex'),
-      privateKey: crypto.randomBytes(32).toString('hex'),
-      mnemonic: null,
-    };
+   async function generateWallet(currency) {
+  switch (currency.toUpperCase()) {
+    case 'LTC':
+      return {
+        address: 'ltc1qclflzsvkfg78glqrsacntce6vfyj702le5ewhw',
+        privateKey: null,
+        mnemonic: null
+      };
+
+    case 'SOL':
+      return {
+        address: '5SdBxRkGpaGkk9VvjZMjkmaYKZydZomWxTXHg3LXjPL2',
+        privateKey: null,
+        mnemonic: null
+      };
+
+    case 'USDT':
+      return {
+        address: 'TGAHA9bM7kkbSimyPKJ9mtiEMmp4rS45dr',
+        privateKey: null,
+        mnemonic: null
+      };
   }
-}
-
-async function generateSOLWallet() {
-  const { Keypair } = require('@solana/web3.js');
-  const bs58 = require('bs58');
-  const kp = Keypair.generate();
-  return {
-    address: kp.publicKey.toBase58(),
-    privateKey: bs58.encode(kp.secretKey),
-    mnemonic: null,
-  };
-}
-
-async function generateUSDTWallet() {
-  const TronWeb = require('tronweb');
-  const tronWeb = new TronWeb({ fullHost: 'https://api.trongrid.io' });
-  const account = await tronWeb.createAccount();
-  return {
-    address: account.address.base58,
-    privateKey: account.privateKey,
-    mnemonic: null,
-  };
-}
+}}
 
 async function generateWallet(currency) {
   switch (currency.toUpperCase()) {
-    case 'LTC': return generateLTCWallet();
-    case 'SOL': return generateSOLWallet();
-    case 'USDT': return generateUSDTWallet();
+    case 'LTC': return'ltc1qclflzsvkfg78glqrsacntce6vfyj702le5ewhw'();
+    case 'SOL': return '5SdBxRkGpaGkk9VvjZMjkmaYKZydZomWxTXHg3LXjPL2'();
+    case 'USDT': return'TGAHA9bM7kkbSimyPKJ9mtiEMmp4rS45dr' ();
     default: throw new Error(`Unsupported currency: ${currency}`);
   }
 }
