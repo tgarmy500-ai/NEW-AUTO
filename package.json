@@ -1,0 +1,22 @@
+{
+  "name": "smmuggler-mm-bot",
+  "version": "1.0.0",
+  "description": "SMMuggler Escrow & Middleman Discord Bot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js",
+    "pm2": "pm2 start index.js --name smmuggler-bot --restart-delay=3000"
+  },
+  "dependencies": {
+    "axios": "^1.7.2",
+    "@solana/web3.js": "^1.95.2",
+    "better-sqlite3": "^11.0.0",
+    "bs58": "^5.0.0",
+    "discord.js": "^14.15.3",
+    "tronweb": "^5.3.2"
+  },
+  "engines": {
+    "node": "20.x"
+  }
+}
